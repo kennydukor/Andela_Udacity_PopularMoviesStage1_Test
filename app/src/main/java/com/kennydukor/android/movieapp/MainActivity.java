@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.kennydukor.android.movieapp.Utilities.GeneralUtilities;
 import com.kennydukor.android.movieapp.Utilities.NetworkUtils;
 import com.kennydukor.android.movieapp.Utilities.movie_rv_adapter;
 
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         movieList_rv = findViewById(R.id.rv_movie);
 
         // The recycler view in the main_activity.xml show have grid layout
-        GridLayoutManager layout = new GridLayoutManager(this, 2);
+        int mNoOfColumns = GeneralUtilities.calculateNoOfColumns(getApplicationContext()); //automatically selects based on sreen size
+        GridLayoutManager layout = new GridLayoutManager(this, mNoOfColumns);
         movieList_rv.setLayoutManager(layout);
 
 //        movieList_rv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -160,4 +163,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 }
